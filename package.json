@@ -14,7 +14,13 @@
   ],
   "scripts": {
     "build": "nuxt-module-build",
-    "dev": "nuxt-module-build --stub && nuxt-module-build prepare"
+    "dev": "nuxt-module-build --stub && nuxt-module-build prepare",
+    "prepack": "pnpm build",
+    "build:docs": "nuxi generate docs",
+    "lint": "eslint .",
+    "typecheck": "nuxi typecheck",
+    "prepare": "nuxi prepare docs",
+    "release": "pnpm lint && standard-version && git push --follow-tags"
   },
   "dependencies": {
     "@nuxt/kit": "^3.5.2",
