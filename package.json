@@ -1,0 +1,33 @@
+{
+  "name": "@salfatigroup/ui",
+  "version": "0.1.0",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "nuxt-module-build",
+    "dev": "nuxt-module-build --stub && nuxt-module-build prepare",
+    "postinstall": "nuxt prepare && pnpm build"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.5.2",
+    "@shimyshack/uid": "^0.1.7"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^0.1.1",
+    "@nuxt/module-builder": "^0.4.0",
+    "@nuxt/schema": "^3.5.2",
+    "@nuxt/test-utils": "^3.5.1",
+    "@types/node": "^18",
+    "nuxt": "^3.5.2",
+    "vue": "^3.3.4"
+  }
+}
