@@ -14,8 +14,7 @@
   ],
   "scripts": {
     "build": "nuxt-module-build",
-    "dev": "nuxt-module-build --stub && nuxt-module-build prepare",
-    "postinstall": "nuxt prepare && pnpm build"
+    "dev": "nuxt-module-build --stub && nuxt-module-build prepare"
   },
   "dependencies": {
     "@nuxt/kit": "^3.5.2",
