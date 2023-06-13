@@ -7,7 +7,7 @@
     }"
   >
     <template v-if="loading">
-      <spinner label="Loading" size="sm" />
+      <spinner label="Loading" />
     </template>
     <template v-else>
       <slot></slot>
