@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full relative bg-transparent border-0 p-0">
+  <div class="w-full relative">
     <label v-if="label" :for="current?.id" class="font-medium align-top">
       {{ label }}
 
@@ -29,6 +29,7 @@ type InputProps = {
   label: string
   required: boolean
   disabled: boolean
+  loading: boolean
 }
 
 const props = defineProps({
@@ -43,5 +44,9 @@ const props = defineProps({
     type: Boolean as PropType<InputProps['loading']>,
     default: false,
   },
+})
+
+defineOptions({
+  inheritAttrs: false,
 })
 </script>
