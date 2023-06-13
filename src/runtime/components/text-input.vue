@@ -16,6 +16,7 @@
       :class="{
         'cursor-not-allowed bg-brand-gray-100/50': disabled,
       }"
+      :type="type"
     />
   </div>
 </template>
@@ -30,6 +31,7 @@ type InputProps = {
   required: boolean
   disabled: boolean
   loading: boolean
+  type: 'text' | 'password' | 'email'
 }
 
 const props = defineProps({
@@ -43,6 +45,10 @@ const props = defineProps({
   disabled: {
     type: Boolean as PropType<InputProps['loading']>,
     default: false,
+  },
+  type: {
+    type: String as PropType<InputProps['type']>,
+    default: 'text',
   },
 })
 
