@@ -14,7 +14,7 @@
       :required="required"
       :disabled="disabled"
       :class="{
-        'cursor-not-allowed bg-brand-gray-100/50': disabled,
+        'cursor-not-allowed bg-brand-gray-500/50': disabled,
       }"
       :type="type"
     />
