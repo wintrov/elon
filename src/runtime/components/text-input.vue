@@ -12,6 +12,10 @@
       v-bind="$attrs"
       class="rounded bg-brand-gray-100/50 border-0 outline-none ring-1 ring-brand-gray-500/50 focus:ring-brand-500/70 focus:outline-none focus:bg-brand-500/10 transition-all ease-in-out py-1 px-2 w-full hover:ring-brand-500/80 hover:bg-brand-500/20 placeholder:text-brand-gray-500"
       :required="required"
+      :disabled="disabled"
+      :class="{
+        'cursor-not-allowed bg-brand-gray-100/50': disabled,
+      }"
     />
   </div>
 </template>
@@ -24,6 +28,7 @@ const current = ref<HTMLInputElement>()
 type InputProps = {
   label: string
   required: boolean
+  disabled: boolean
 }
 
 const props = defineProps({
@@ -32,6 +37,10 @@ const props = defineProps({
   },
   required: {
     type: Boolean as PropType<InputProps['required']>,
+    default: false,
+  },
+  disabled: {
+    type: Boolean as PropType<InputProps['loading']>,
     default: false,
   },
 })
