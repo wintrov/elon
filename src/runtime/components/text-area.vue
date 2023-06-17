@@ -6,7 +6,7 @@
       <span v-if="required" class="text-brand-danger-500 text-xs">*</span>
     </label>
 
-    <input
+    <textarea
       v-uid
       ref="current"
       v-bind="$attrs"
@@ -16,39 +16,33 @@
       :class="{
         'cursor-not-allowed bg-brand-gray-500/50': disabled,
       }"
-      :type="type"
-    />
+    ></textarea>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, PropType } from 'vue'
 
-const current = ref<HTMLInputElement>()
+const current = ref<HTMLTextAreaElement>()
 
-type InputProps = {
+type TextAreaProps = {
   label: string
   required: boolean
   disabled: boolean
   loading: boolean
-  type: 'text' | 'password' | 'email' | 'url'
 }
 
 const props = defineProps({
   label: {
-    type: String as PropType<InputProps['label']>,
+    type: String as PropType<TextAreaProps['label']>,
   },
   required: {
-    type: Boolean as PropType<InputProps['required']>,
+    type: Boolean as PropType<TextAreaProps['required']>,
     default: false,
   },
   disabled: {
-    type: Boolean as PropType<InputProps['loading']>,
+    type: Boolean as PropType<TextAreaProps['loading']>,
     default: false,
-  },
-  type: {
-    type: String as PropType<InputProps['type']>,
-    default: 'text',
   },
 })
 
