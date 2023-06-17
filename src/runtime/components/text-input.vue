@@ -17,6 +17,8 @@
         'cursor-not-allowed bg-brand-gray-500/50': disabled,
       }"
       :type="type"
+      :value="modelValue"
+      @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     />
   </div>
 </template>
@@ -26,12 +28,17 @@ import { ref, PropType } from 'vue'
 
 const current = ref<HTMLInputElement>()
 
+const emit = defineEmits<{
+  'update:modelValue': [value: string]
+}>()
+
 type InputProps = {
   label: string
   required: boolean
   disabled: boolean
   loading: boolean
   type: 'text' | 'password' | 'email' | 'url'
+  modelValue: string
 }
 
 const props = defineProps({
@@ -49,6 +56,10 @@ const props = defineProps({
   type: {
     type: String as PropType<InputProps['type']>,
     default: 'text',
+  },
+  modelValue: {
+    type: String as PropType<InputProps['modelValue']>,
+    default: '',
   },
 })
 

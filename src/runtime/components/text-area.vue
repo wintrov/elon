@@ -16,6 +16,8 @@
       :class="{
         'cursor-not-allowed bg-brand-gray-500/50': disabled,
       }"
+      :value="modelValue"
+      @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     ></textarea>
   </div>
 </template>
@@ -25,11 +27,16 @@ import { ref, PropType } from 'vue'
 
 const current = ref<HTMLTextAreaElement>()
 
+const emit = defineEmits<{
+  'update:modelValue': [value: string]
+}>()
+
 type TextAreaProps = {
   label: string
   required: boolean
   disabled: boolean
   loading: boolean
+  modelValue: string
 }
 
 const props = defineProps({
@@ -43,6 +50,10 @@ const props = defineProps({
   disabled: {
     type: Boolean as PropType<TextAreaProps['loading']>,
     default: false,
+  },
+  modelValue: {
+    type: String as PropType<TextAreaProps['modelValue']>,
+    default: '',
   },
 })
 
