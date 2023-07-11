@@ -14,7 +14,11 @@
         'cursor-not-allowed bg-brand-gray-500/50': disabled,
       }"
     >
-      {{ Array.isArray(modelValue) ? modelValue.map((option) => option.name).join(', ') : modelValue.name }}
+      {{
+        Array.isArray(modelValue)
+          ? modelValue.map((option) => option.name).join(', ')
+          : modelValue.name
+      }}
     </button>
 
     <ul>
@@ -44,7 +48,7 @@ type SelectProps = {
   loading: boolean
   options: SelectOption[]
   modelValue: SelectOption | SelectOption[]
-};
+}
 
 const emit = defineEmits<{
   'update:modelValue': [value: SelectOption | SelectOption[]]

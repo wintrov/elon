@@ -17,7 +17,9 @@
         'cursor-not-allowed bg-brand-gray-500/50': disabled,
       }"
       :value="modelValue"
-      @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+      @input="
+        emit('update:modelValue', ($event.target as HTMLInputElement).value)
+      "
     ></textarea>
   </div>
 </template>

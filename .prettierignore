@@ -1,0 +1,7 @@
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+**/supabase.ts
+**/pnpm-lock.yaml
+**/auto-imports.d.ts
