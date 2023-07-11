@@ -51,44 +51,36 @@ const props = defineProps({
   },
 })
 
-const primaryDefaultClasses = 'inline-flex items-center text-xs font-medium'
-
 const primaryClasses = computed(() => ({
-  [primaryDefaultClasses]: true,
   'bg-brand-50 text-brand-700 ring-brand-700/10': !props.dot && !props.flat,
   'bg-brand-100 text-brand-700': props.flat,
 }))
 
 const secondaryClasses = computed(() => ({
-  [primaryDefaultClasses]: true,
   'bg-brand-gray-50 text-brand-gray-600 ring-brand-gray-500/10':
     !props.dot && !props.flat,
   'bg-brand-gray-100 text-brand-gray-600': props.flat,
 }))
 
 const infoClasses = computed(() => ({
-  [primaryDefaultClasses]: true,
   'bg-brand-info-50 text-brand-info-700 ring-brand-info-700/10':
     !props.dot && !props.flat,
   'bg-brand-info-100 text-brand-info-700': props.flat,
 }))
 
 const warnClasses = computed(() => ({
-  [primaryDefaultClasses]: true,
   'bg-brand-warn-50 text-brand-warn-700 ring-brand-warn-700/10':
     !props.dot && !props.flat,
   'bg-brand-warn-100 text-brand-warn-700': props.flat,
 }))
 
 const dangerClasses = computed(() => ({
-  [primaryDefaultClasses]: true,
   'bg-brand-danger-50 text-brand-danger-700 ring-brand-danger-700/10':
     !props.dot && !props.flat,
   'bg-brand-danger-100 text-brand-danger-700': props.flat,
 }))
 
 const successClasses = computed(() => ({
-  [primaryDefaultClasses]: true,
   'bg-brand-success-50 text-brand-success-700 ring-brand-success-700/10':
     !props.dot && !props.flat,
   'bg-brand-success-100 text-brand-success-700': props.flat,
@@ -107,7 +99,8 @@ const badgeClasses = computed(() => {
 
   return {
     ...baseClasses[props.variant ?? 'primary'],
-    'font-semibold shadow-sm space-x-2': true,
+    'font-semibold shadow-sm space-x-2 inline-flex items-center text-xs font-medium':
+      true,
     'px-1.5 py-0.5': ['sm'].includes(props.size),
     'px-2 py-1': ['md'].includes(props.size),
 
@@ -134,7 +127,6 @@ const dotClasses = computed(() => ({
   hidden: !props.dot,
 }))
 
-console.log(props.button)
 const buttonClasses = computed(() => ({
   'group relative -mr-1 h-3.5 w-3.5 rounded-sm': true,
   'hover:bg-brand-600/20': props.variant === 'primary',
