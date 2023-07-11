@@ -1,6 +1,5 @@
 <template>
-  <a href="/"> back</a>
-  <div class="w-full flex flex-col space-y-10 px-[40%] mt-10">
+  <div class="w-full flex flex-col space-y-10 mt-10">
     <k-text-input modelValue="No labels" />
     <k-text-input
       label="Company Name"

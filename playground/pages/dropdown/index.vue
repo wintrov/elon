@@ -1,6 +1,5 @@
 <template>
-  <a href="/"> back</a>
-  <div class="w-full flex flex-col space-y-2 px-[40%] mt-10">
+  <div class="w-full flex flex-col space-y-2 mt-10">
     <k-dropdown :items="items" title="Menu"></k-dropdown>
   </div>
 </template>

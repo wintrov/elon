@@ -1,6 +1,5 @@
 <template>
-  <a href="/"> back</a>
-  <div class="w-full flex flex-col space-y-2 px-[40%] mt-10 [&>*]:w-fit">
+  <div class="w-full flex flex-col space-y-2 mt-10 [&>*]:w-fit">
     <k-badge variant="primary">Primary</k-badge>
     <k-badge variant="primary" dot>Primary Dot</k-badge>
     <k-badge variant="primary" button>Primary Button</k-badge>

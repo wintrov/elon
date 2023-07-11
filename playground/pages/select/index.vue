@@ -1,5 +1,4 @@
 <template>
-  <a href="/"> back</a>
   <div class="w-full flex flex-col space-y-2 px-[40%] mt-10">
     <k-select :options="options" />
   </div>
