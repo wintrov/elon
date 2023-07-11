@@ -1,4 +1,9 @@
-import { defineNuxtModule, addComponentsDir, createResolver, addPlugin } from '@nuxt/kit'
+import {
+  defineNuxtModule,
+  addComponentsDir,
+  createResolver,
+  addPlugin,
+} from '@nuxt/kit'
 import { name, version } from '../package.json'
 
 export interface ModuleOptions {
@@ -14,13 +19,13 @@ export default defineNuxtModule<ModuleOptions>({
     version,
     configKey: 'ui',
     compatibility: {
-      nuxt: '^3.0.0'
-    }
+      nuxt: '^3.0.0',
+    },
   },
   defaults: {
     prefix: 'k',
   },
-  async setup (options, nuxt) {
+  async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
     // Transpile runtime
@@ -34,7 +39,7 @@ export default defineNuxtModule<ModuleOptions>({
     addComponentsDir({
       path: resolve(runtimeDir, 'components'),
       prefix: options.prefix,
-      watch: false
+      watch: false,
     })
-  }
+  },
 })
