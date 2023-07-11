@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ComputedRef } from 'vue'
+import { computed } from 'vue'
 
 export type Props = {
   variant?: 'primary' | 'secondary' | 'info' | 'warn' | 'danger' | 'success'
