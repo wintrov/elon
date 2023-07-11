@@ -35,7 +35,6 @@ const props = defineProps({
   },
 })
 
-console.log(props.size)
 // generate the button classes based on the props
 const buttonClasses = computed(() => {
   return {
