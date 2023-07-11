@@ -28,6 +28,14 @@
         />
       </template>
     </k-text-input>
+
+    <k-text-input
+      insetLabel
+      label="With inset label"
+      placeholder="Placeholder"
+    />
+
+    <k-text-input label="Pill" placeholder="Placeholder" pill />
   </div>
 </template>
 
