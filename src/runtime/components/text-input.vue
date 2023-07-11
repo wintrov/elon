@@ -9,6 +9,8 @@
 
     <div :class="inputWrapperClasses">
       <div
+        v-if="leadingIcon"
+        ref="leadingIconRef"
         class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
       >
         <slot name="leadingIcon"></slot>
@@ -28,15 +30,16 @@
         "
       />
       <div
+        v-if="trailingIcon || errorText"
+        ref="trailingIconRef"
         class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
       >
-        <slot name="trailingIcon"></slot>
-      </div>
-      <div :class="errorIconClasses">
         <ExclamationCircleIcon
+          v-if="errorText"
           class="h-5 w-5 text-brand-danger-500"
           aria-hidden="true"
         />
+        <slot v-else name="trailingIcon"></slot>
       </div>
     </div>
     <p :class="bottomTextClasses">
@@ -46,12 +49,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, PropType, computed } from 'vue'
+import { ref, PropType, computed, onMounted } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/20/solid'
 
 const current = ref<HTMLInputElement>()
+const leadingIconRef = ref<HTMLInputElement>()
+const trailingIconRef = ref<HTMLInputElement>()
 
-;('relative mt-2 rounded-md shadow-sm')
 const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
@@ -111,6 +115,17 @@ defineOptions({
   inheritAttrs: false,
 })
 
+onMounted(() => {
+  if (current.value) {
+    if (leadingIconRef.value) {
+      current.value.style.paddingLeft = `calc(${leadingIconRef.value.offsetWidth}px + 0.5rem)`
+    }
+    if (trailingIconRef.value) {
+      current.value.style.paddingRight = `calc(${trailingIconRef.value.offsetWidth}px + 0.5rem)`
+    }
+  }
+})
+
 const { leadingIcon, trailingIcon } = defineSlots()
 const labelClasses = computed(() => ({
   'block text-sm font-medium leading-6 text-brand-gray-900': label,
@@ -128,11 +143,6 @@ const bottomTextClasses = computed(() => ({
   'text-brand-danger-500': errorText,
 }))
 
-const errorIconClasses = computed(() => ({
-  'pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3': true,
-  hidden: !errorText,
-}))
-
 const inputClasses = computed(() => ({
   'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6':
     true,
@@ -140,8 +150,11 @@ const inputClasses = computed(() => ({
     true,
   'text-brand-gray-900 ring-brand-gray-300 placeholder:text-brand-gray-400 focus:ring-brand-600':
     !errorText,
-  'pr-10 text-brand-danger-900 ring-brand-danger-300 placeholder:text-brand-danger-400 focus:ring-brand-danger-500':
+  'text-brand-danger-900 ring-brand-danger-300 placeholder:text-brand-danger-400 focus:ring-brand-danger-500':
     errorText || trailingIcon,
+
+  // These will be overriden by the onMounted hook above, but prevents a glitch on load
+  'pr-10': trailingIcon,
   'pl-10': leadingIcon,
 }))
 </script>
