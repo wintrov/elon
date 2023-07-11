@@ -1,38 +1,46 @@
 <template>
-  <button
-    class="px-2 py-1.5 w-full rounded bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all ease-in-out focus:outline-none focus:ring-1 focus:ring-brand-500/80 focus:ring-offset-1 focus:ring-offset-brand-500/20 focus:bg-brand-500/20 focus:text-brand-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-    :disabled="disabled"
-    :class="{
-      'cursor-not-allowed bg-brand-gray-500/50': disabled,
-    }"
-  >
-    <template v-if="loading">
-      <spinner label="Loading" />
-    </template>
-    <template v-else>
-      <slot></slot>
-    </template>
+  <button v-bind="$attrs" :class="buttonClasses">
+    <slot name="prefixIcon" v-if="$slots.prefixIcon"></slot>
+    <slot></slot>
+    <slot name="suffixIcon" v-if="$slots.suffixIcon"></slot>
   </button>
 </template>
 
 <script setup lang="ts">
-import spinner from './spinner.vue'
-import { PropType } from 'vue'
+import { computed } from "vue";
 
-type ButtonProps = {
-  disabled: boolean
-  loading: boolean
-}
+export type Props = {
+  variant?: "primary" | "secondary" | "info" | "warning" | "danger";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  soft?: boolean;
+  pill?: boolean;
+};
 
 const props = defineProps({
-  disabled: {
-    type: Boolean as PropType<ButtonProps['disabled']>,
-    default: false,
+  variant: {
+    type: String,
+    default: "primary" as Props["variant"],
   },
-  loading: {
-    type: Boolean as PropType<ButtonProps['loading']>,
-    default: false,
+  size: {
+    type: String,
+    default: "md" as Props["size"],
   },
-})
-</script>
+  soft: {
+    type: Boolean,
+    default: false as Props["soft"],
+  },
+  pill: {
+    type: Boolean,
+    default: false as Props["pill"],
+  },
+});
 
+// generate the button classes based on the props
+const buttonClasses = computed(() => {
+  return {
+    "bg-brand-600 font-semibold text-white shadow-sm hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600":
+      true,
+    "rounded px-2 py-1": props.size === "xs",
+  };
+});
+</script>
