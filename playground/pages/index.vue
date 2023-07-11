@@ -1,8 +1,13 @@
 <template>
   <div>
-    <h1>Buttons</h1>
     <div>
-      <k-button type="submit">Button</k-button>
+      <a href="/button">
+        <k-button>Button</k-button>
+      </a>
+
+      <a href="/dropdown">
+        <k-dropdown></k-dropdown>
+      </a>
     </div>
   </div>
 </template>
