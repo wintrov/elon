@@ -17,9 +17,9 @@
     <k-button soft>Soft</k-button>
 
     <k-button soft>
-      <slot name="prefixIcon">prefixIcon</slot>
+      <template #prefixIcon>prefixIcon</template>
       Some text
-      <slot name="suffixIcons">suffixIcon</slot>
+      <template #suffixIcons>suffixIcon</template>
     </k-button>
 
     <k-button pill>Pill</k-button>
