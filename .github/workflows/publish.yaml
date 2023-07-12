@@ -22,11 +22,11 @@ jobs:
     #
     - name: Get changed files
       id: changed-files
-      uses: tj-actions/changed-files@v37
+      uses: tj-actions/changed-files@v35
       with:
-        json: "true"
         dir_names: "true"
-        escape_json: "true"
+        json: true
+        json_raw_format: true
         files: |
           packages/**
 ############################################################################################################
