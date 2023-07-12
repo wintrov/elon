@@ -5,23 +5,35 @@
         <h2 class="text-lg leading-6 font-medium text-brand-gray-900">
           @salfatigroup/ui
         </h2>
-        <code class="inline-block p-2 text-xs font-mono text-brand-gray-500 rounded-lg border border-brand-gray-200">
+        <code
+          class="inline-block p-2 text-xs font-mono text-brand-gray-500 rounded-lg border border-brand-gray-200"
+        >
           npm i @salfatigroup/ui
         </code>
       </div>
     </div>
 
-    <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <li v-for="component in components" :key="component.title" class="flex flex-col bg-brand-gray-50 col-span-1 rounded-lg shadow">
+    <ul
+      role="list"
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <li
+        v-for="component in components"
+        :key="component.title"
+        class="flex flex-col bg-brand-gray-50 col-span-1 rounded-lg shadow"
+      >
         <div class="bg-white space-y-6 p-6 flex-1">
           <div class="flex w-full items-center justify-between space-x-6">
             <h2 class="truncate text-sm font-medium text-brand-gray-900">
               {{ component.title }}
             </h2>
 
-            <nuxt-link :to="component.to" class="flex items-center space-x-2 text-xs text-brand-500 hover:text-brand-700">
+            <nuxt-link
+              :to="component.to"
+              class="flex items-center space-x-2 text-xs text-brand-500 hover:text-brand-700"
+            >
               <span>Learn more</span>
-              <ChevronRightIcon class="h-4 w-4" aria-hidden="true" />
+              <KIconChevronRight class="h-4 w-4" />
             </nuxt-link>
           </div>
 
@@ -36,7 +48,9 @@
           </div>
         </div>
 
-        <code class="block w-full p-6 text-sm font-mono text-brand-gray-500 rounded-b-lg overflow-x-scroll whitespace-nowrap">
+        <code
+          class="block w-full p-6 text-sm font-mono text-brand-gray-500 rounded-b-lg overflow-x-scroll whitespace-nowrap"
+        >
           {{ component.codeExample }}
         </code>
       </li>
@@ -45,8 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { ChevronRightIcon } from '@heroicons/vue/20/solid'
+import { ref, shallowRef } from 'vue'
 
 import KButton from '../../../packages/ui/src/runtime/components/button.vue'
 import KDrowdown from '../../../packages/ui/src/runtime/components/dropdown.vue'
@@ -59,7 +72,7 @@ const components = ref([
   {
     title: 'Button',
     to: '/button',
-    element: KButton,
+    element: shallowRef(KButton),
     props: {
       class: 'w-full',
     },
@@ -74,19 +87,19 @@ const components = ref([
   {
     title: 'Dropdown',
     to: '/dropdown',
-    element: KDrowdown,
+    element: shallowRef(KDrowdown),
     props: {
       class: 'w-full',
       items: [
         {
           value: '1',
-          label: 'Option 1'
+          label: 'Option 1',
         },
         {
           value: '2',
-          label: 'Option 2'
-        }
-      ]
+          label: 'Option 2',
+        },
+      ],
     },
     slots: [
       {
@@ -99,7 +112,7 @@ const components = ref([
   {
     title: 'Badge',
     to: '/badge',
-    element: KBadge,
+    element: shallowRef(KBadge),
     props: {
       dot: true,
     },
@@ -114,21 +127,21 @@ const components = ref([
   {
     title: 'Select',
     to: '/select',
-    element: KSelect,
+    element: shallowRef(KSelect),
     props: {
       class: 'w-full',
       options: [
         {
           id: '1',
-          text: 'Wade Cooper'
+          text: 'Wade Cooper',
         },
         {
           id: '2',
           text: 'Arlene Mccoy',
           avatar:
-      'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        }
-      ]
+            'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        },
+      ],
     },
     slots: [
       {
@@ -141,7 +154,7 @@ const components = ref([
   {
     title: 'Input',
     to: '/input',
-    element: KInput,
+    element: shallowRef(KInput),
     props: {
       class: 'w-full',
     },
@@ -156,7 +169,7 @@ const components = ref([
   {
     title: 'Text area',
     to: '/text-area',
-    element: KTextArea,
+    element: shallowRef(KTextArea),
     props: {
       class: 'w-full',
     },

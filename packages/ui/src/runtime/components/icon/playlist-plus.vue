@@ -1,0 +1,60 @@
+<template>
+	<template v-if="variant === 'duocolor'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M19 14V20M16 17H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2 4H20M2 9H16M2 14H12M2 19H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'duotone'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 4H20M2 9H16M2 14H12M2 19H9M19 14V17M19 17V20M19 17H16M19 17H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'mono'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.32" fill-rule="evenodd" clip-rule="evenodd" d="M1.25 4C1.25 3.58579 1.58579 3.25 2 3.25H20C20.4142 3.25 20.75 3.58579 20.75 4C20.75 4.41421 20.4142 4.75 20 4.75H2C1.58579 4.75 1.25 4.41421 1.25 4ZM1.25 9C1.25 8.58579 1.58579 8.25 2 8.25H16C16.4142 8.25 16.75 8.58579 16.75 9C16.75 9.41421 16.4142 9.75 16 9.75H2C1.58579 9.75 1.25 9.41421 1.25 9ZM1.25 14C1.25 13.5858 1.58579 13.25 2 13.25H11C11.4142 13.25 11.75 13.5858 11.75 14C11.75 14.4142 11.4142 14.75 11 14.75H2C1.58579 14.75 1.25 14.4142 1.25 14ZM1.25 19C1.25 18.5858 1.58579 18.25 2 18.25H9C9.41421 18.25 9.75 18.5858 9.75 19C9.75 19.4142 9.41421 19.75 9 19.75H2C1.58579 19.75 1.25 19.4142 1.25 19Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M19 12C16.2386 12 14 14.2386 14 17C14 19.7614 16.2386 22 19 22C21.7614 22 24 19.7614 24 17C24 14.2386 21.7614 12 19 12ZM19.75 15C19.75 14.5858 19.4142 14.25 19 14.25C18.5858 14.25 18.25 14.5858 18.25 15V16.25H17C16.5858 16.25 16.25 16.5858 16.25 17C16.25 17.4142 16.5858 17.75 17 17.75H18.25V19C18.25 19.4142 18.5858 19.75 19 19.75C19.4142 19.75 19.75 19.4142 19.75 19V17.75H21C21.4142 17.75 21.75 17.4142 21.75 17C21.75 16.5858 21.4142 16.25 21 16.25H19.75V15Z" fill="currentColor"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'filled'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1.25 4C1.25 3.58579 1.58579 3.25 2 3.25H20C20.4142 3.25 20.75 3.58579 20.75 4C20.75 4.41421 20.4142 4.75 20 4.75H2C1.58579 4.75 1.25 4.41421 1.25 4ZM1.25 9C1.25 8.58579 1.58579 8.25 2 8.25H16C16.4142 8.25 16.75 8.58579 16.75 9C16.75 9.41421 16.4142 9.75 16 9.75H2C1.58579 9.75 1.25 9.41421 1.25 9ZM1.25 14C1.25 13.5858 1.58579 13.25 2 13.25H11C11.4142 13.25 11.75 13.5858 11.75 14C11.75 14.4142 11.4142 14.75 11 14.75H2C1.58579 14.75 1.25 14.4142 1.25 14ZM1.25 19C1.25 18.5858 1.58579 18.25 2 18.25H9C9.41421 18.25 9.75 18.5858 9.75 19C9.75 19.4142 9.41421 19.75 9 19.75H2C1.58579 19.75 1.25 19.4142 1.25 19ZM14 17C14 14.2386 16.2386 12 19 12C21.7614 12 24 14.2386 24 17C24 19.7614 21.7614 22 19 22C16.2386 22 14 19.7614 14 17ZM19.75 15C19.75 14.5858 19.4142 14.25 19 14.25C18.5858 14.25 18.25 14.5858 18.25 15V16.25H17C16.5858 16.25 16.25 16.5858 16.25 17C16.25 17.4142 16.5858 17.75 17 17.75H18.25V19C18.25 19.4142 18.5858 19.75 19 19.75C19.4142 19.75 19.75 19.4142 19.75 19V17.75H21C21.4142 17.75 21.75 17.4142 21.75 17C21.75 16.5858 21.4142 16.25 21 16.25H19.75V15Z" fill="currentColor"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'gestalt'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 4H13M16 4H20M2 9H16M7 14H12M2 14H4M2 19H9M19 14V17M19 17V20M19 17H16M19 17H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'line'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 4H20M2 9H16M2 14H12M2 19H9M19 14V17M19 17V20M19 17H16M19 17H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+</template>
+
+<script lang="ts" setup>
+import { PropType } from 'vue'
+import { IconProps, IconVariants } from './types'
+
+const props = defineProps({
+	width: {
+		type: Number as PropType<IconProps['width']>,
+		default: 24,
+	},
+	height: {
+		type: Number as PropType<IconProps['height']>,
+		default: 24,
+	},
+	variant: {
+		type: String as PropType<IconVariants>,
+		default: 'duocolor',
+	},
+})
+</script>

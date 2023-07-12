@@ -27,7 +27,7 @@
         <span
           class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
         >
-          <ChevronUpDownIcon
+          <IChevronDown
             class="h-5 w-5 text-brand-gray-400"
             aria-hidden="true"
           />
@@ -73,12 +73,12 @@ import {
   ListboxOption,
   ListboxOptions,
 } from '@headlessui/vue'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
-import Option, { OptionType } from './select/option'
+import { IChevronDown } from './icon'
+import Option, { OptionType } from './select/option.vue'
 
 type Props = {
   options: OptionType[]
-  modelValue: Option | OptionType[]
+  modelValue: OptionType | OptionType[]
   multiple: boolean
   placeholder: string
   label: string

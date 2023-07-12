@@ -1,0 +1,62 @@
+<template>
+	<template v-if="variant === 'duocolor'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M6.9999 16.5001L5.99991 22.0001C7.98446 21.6693 9.98036 21.2208 11.9999 21.2208C14.0132 21.2208 16.0144 21.6691 17.9999 22.0001L16.9999 16.5001" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="4" y="2" width="16" height="16" rx="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'duotone'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect opacity="0.12" x="4" y="2" width="16" height="16" rx="8" fill="currentColor"/>
+<path d="M6.99999 16.5L6 22C7.98191 21.6697 9.98451 21.2207 12 21.2207C14.0155 21.2207 16.0181 21.6697 18 22L17 16.5M12 18C7.58172 18 4 14.4183 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10C20 14.4183 16.4183 18 12 18Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'mono'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.32" d="M3.25012 10C3.25012 5.16751 7.16763 1.25 12.0001 1.25C16.8326 1.25 20.7501 5.16751 20.7501 10C20.7501 14.8325 16.8326 18.75 12.0001 18.75C7.16763 18.75 3.25012 14.8325 3.25012 10Z" fill="currentColor"/>
+<path d="M5.73645 19.2575C5.8143 18.8293 5.85323 18.6152 5.95386 18.5078C6.04809 18.4072 6.15391 18.3578 6.29156 18.3503C6.43857 18.3423 6.64386 18.4593 7.05446 18.6934C8.51298 19.5249 10.2011 20 12.0001 20C13.7992 20 15.4873 19.5249 16.9458 18.6934C17.3564 18.4593 17.5617 18.3423 17.7087 18.3503C17.8463 18.3578 17.9521 18.4072 18.0464 18.5078C18.147 18.6152 18.1859 18.8293 18.2638 19.2575L18.7253 21.7959C18.7938 22.1726 18.828 22.361 18.7712 22.4974C18.7215 22.6167 18.6274 22.7122 18.5088 22.7637C18.3732 22.8225 18.1844 22.791 17.8067 22.7281L16.0854 22.4412C14.4977 22.1766 13.7529 22.0533 13.0068 22.0039C12.3364 21.9596 11.6638 21.9596 10.9934 22.0039C10.2474 22.0533 9.50255 22.1766 7.91481 22.4412L6.19355 22.7281C5.81585 22.791 5.627 22.8225 5.49145 22.7637C5.37284 22.7122 5.27879 22.6167 5.22904 22.4974C5.17219 22.361 5.20644 22.1726 5.27494 21.7959L5.73645 19.2575Z" fill="currentColor"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'filled'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.25006 10.0002C3.25006 5.16769 7.16757 1.25018 12.0001 1.25018C16.8326 1.25018 20.7501 5.16769 20.7501 10.0002C20.7501 14.8327 16.8326 18.7502 12.0001 18.7502C7.16757 18.7502 3.25006 14.8327 3.25006 10.0002Z" fill="currentColor"/>
+<path d="M5.73639 19.2577C5.81424 18.8295 5.85317 18.6154 5.9538 18.5079C6.04803 18.4073 6.15385 18.358 6.2915 18.3505C6.43851 18.3424 6.6438 18.4595 7.0544 18.6936C8.51292 19.5251 10.201 20.0002 12.0001 20.0002C13.7991 20.0002 15.4872 19.5251 16.9457 18.6936C17.3563 18.4595 17.5616 18.3424 17.7086 18.3505C17.8463 18.358 17.9521 18.4073 18.0463 18.508C18.1469 18.6154 18.1859 18.8295 18.2637 19.2577L18.7252 21.796C18.7937 22.1728 18.828 22.3611 18.7711 22.4975C18.7214 22.6169 18.6273 22.7123 18.5087 22.7638C18.3732 22.8227 18.1843 22.7912 17.8066 22.7283L16.0854 22.4414C14.4976 22.1768 13.7528 22.0535 13.0067 22.0041C12.3364 21.9598 11.6638 21.9598 10.9934 22.0041C10.2473 22.0535 9.50249 22.1768 7.91475 22.4414L6.19349 22.7283C5.81579 22.7912 5.62694 22.8227 5.49139 22.7638C5.37278 22.7123 5.27873 22.6169 5.22898 22.4975C5.17213 22.3611 5.20638 22.1728 5.27488 21.796L5.73639 19.2577Z" fill="currentColor"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'gestalt'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17 16.5L18 22C16.0181 21.6697 14.0155 21.2207 12 21.2207C9.98451 21.2207 7.98191 21.6697 6 22L6.36363 20M18.9297 6C19.6104 7.17669 20 8.54285 20 10C20 14.4183 16.4183 18 12 18C7.58172 18 4 14.4183 4 10C4 5.58172 7.58172 2 12 2C13.6686 2 15.2179 2.51085 16.5 3.38468" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'line'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.99987 16.5001L5.99988 22.0001C7.98179 21.6698 9.98438 21.2208 11.9999 21.2208C14.0154 21.2208 16.018 21.6698 17.9999 22.0001L16.9999 16.5001M11.9999 18.0001C7.5816 18.0001 3.99988 14.4184 3.99988 10.0001C3.99988 5.58184 7.5816 2.00012 11.9999 2.00012C16.4182 2.00012 19.9999 5.58184 19.9999 10.0001C19.9999 14.4184 16.4182 18.0001 11.9999 18.0001Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+</template>
+
+<script lang="ts" setup>
+import { PropType } from 'vue'
+import { IconProps, IconVariants } from './types'
+
+const props = defineProps({
+	width: {
+		type: Number as PropType<IconProps['width']>,
+		default: 24,
+	},
+	height: {
+		type: Number as PropType<IconProps['height']>,
+		default: 24,
+	},
+	variant: {
+		type: String as PropType<IconVariants>,
+		default: 'duocolor',
+	},
+})
+</script>

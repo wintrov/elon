@@ -1,0 +1,60 @@
+<template>
+	<template v-if="variant === 'duocolor'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M12 22C6.47715 22 2 17.5228 2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5556 2 12 2C5.33333 2 2 7.5 2 7.5M2 7.5V4M2 7.5H5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'duotone'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle opacity="0.12" cx="12" cy="12" r="10" fill="currentColor"/>
+<path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5556 2 12 2C5.33333 2 2 7.5 2 7.5M2 7.5V4M2 7.5H5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'mono'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5556 2 12 2C5.33333 2 2 7.5 2 7.5M2 7.5V4M2 7.5H5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'filled'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5556 2 12 2C5.33333 2 2 7.5 2 7.5M2 7.5V4M2 7.5H5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'gestalt'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 7.5V4M2 7.5C2 7.5 5.33333 2 12 2C17.5556 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C10.1786 22 8.47087 21.513 7 20.6622M2 7.5H5.5M3.99927 18C2.74389 16.3287 2 14.2512 2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+	<template v-else-if="variant === 'line'">
+		<svg :width="width" :height="height" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5556 2 12 2C5.33333 2 2 7.5 2 7.5M2 7.5V4M2 7.5H5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+	</template>
+</template>
+
+<script lang="ts" setup>
+import { PropType } from 'vue'
+import { IconProps, IconVariants } from './types'
+
+const props = defineProps({
+	width: {
+		type: Number as PropType<IconProps['width']>,
+		default: 24,
+	},
+	height: {
+		type: Number as PropType<IconProps['height']>,
+		default: 24,
+	},
+	variant: {
+		type: String as PropType<IconVariants>,
+		default: 'duocolor',
+	},
+})
+</script>

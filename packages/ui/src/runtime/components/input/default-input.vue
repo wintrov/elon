@@ -34,9 +34,11 @@
         ref="trailingIconRef"
         class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
       >
-        <ExclamationCircleIcon
+        <IAlertCircle
           v-if="errorText"
-          class="h-5 w-5 text-brand-danger-500"
+          :height="20"
+          :width="20"
+          class="text-brand-danger-500"
           aria-hidden="true"
         />
         <slot v-else name="trailingIcon"></slot>
@@ -50,7 +52,7 @@
 
 <script setup lang="ts">
 import { ref, PropType, computed, onMounted } from 'vue'
-import { ExclamationCircleIcon } from '@heroicons/vue/20/solid'
+import { IAlertCircle } from '../icon'
 
 const current = ref<HTMLInputElement>()
 const leadingIconRef = ref<HTMLInputElement>()

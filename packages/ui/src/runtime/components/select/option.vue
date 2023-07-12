@@ -46,12 +46,12 @@
       'absolute inset-y-0 right-0 flex items-center pr-4',
     ]"
   >
-    <CheckIcon class="h-5 w-5" aria-hidden="true" />
+    <ICheck :height="20" :width="20" aria-hidden="true" />
   </span>
 </template>
 <script setup lang="ts">
 import { PropType } from 'vue'
-import { CheckIcon } from '@heroicons/vue/20/solid'
+import { ICheck } from '../icon'
 
 export type OptionType = {
   id: number
