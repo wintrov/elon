@@ -8,22 +8,15 @@ on:
 #############################################################################################
 jobs:
 #############################################################################################
-  GET-VERSION:
+  GET-CHANGED-FILES:
     # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     outputs:
-      tag_version: ${{ steps.bump_version.outputs.version_tag }}
       changed_packages: ${{ steps.filter.outputs.packages_files }}
     #
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    #
-    - name: Bump version
-      id: bump_version
-      uses: paulhatch/semantic-version@v5.0.2
-      with:
-        change_path: 'packages/**/**'
     #
     - name: Get changed files
       uses: dorny/paths-filter@v2
@@ -34,12 +27,28 @@ jobs:
             - 'packages/**/**'
     - name: print outputs
       run: |
-        echo "version: ${{ needs.GET-VERSION.outputs.tag_version }}"
         echo "packages: ${{ needs.GET-VERSION.outputs.changed_packages }}"
-#   PUBLISH:
-#     runs-on: ubuntu-latest
-#     name: Update resources by VPA
-#     steps:
-# #############################################################################################
-#       - name: Checkout repository
-#         uses: actions/checkout@v3
+############################################################################################################
+  # RELEASE:
+  #   # if: github.event.pull_request.merged == true
+  #   needs: 
+  #     - GET-CHANGED-FILES
+  #   strategy:
+  #     matrix:
+  #       package: ${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}
+  #   name: Release
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: "12.x"
+  #     - name: Get into package folder
+  #       run: cd ${{ matrix.package }}
+  #     - run: npm ci
+  #     - run: npm run build --if-present
+  #     - run: npm test
+  #     - run: npx semantic-release
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
