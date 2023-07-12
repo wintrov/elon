@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center"
+    class="flex items-center text-left"
     v-if="option.online !== undefined || option.avatar"
   >
     <img
@@ -25,15 +25,17 @@
     >
       {{ option.text }}
       <span class="sr-only" v-if="option.online !== undefined">
-        is {{ option.online ? 'online' : 'offline' }}</span
-      >
+        is {{ option.online ? 'online' : 'offline' }}
+      </span>
       <slot></slot>
     </span>
   </div>
   <span
     v-else
+    class="text-left"
     :class="[selected ? 'font-semibold' : 'font-normal', 'block truncate']"
-    >{{ option.text }}
+  >
+    {{ option.text }}
     <slot></slot>
   </span>
 
