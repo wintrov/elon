@@ -1,26 +1,31 @@
 <template>
   <div class="w-full relative">
-    <label v-if="label" :for="current?.id" class="font-medium align-top">
+    <label
+      v-if="label"
+      :for="current?.id"
+      class="block text-sm font-medium leading-6 text-brand-gray-900"
+    >
       {{ label }}
 
       <span v-if="required" class="text-brand-danger-500 text-xs">*</span>
     </label>
-
-    <textarea
-      v-uid
-      ref="current"
-      v-bind="$attrs"
-      class="rounded bg-brand-gray-100/50 border-0 outline-none ring-1 ring-brand-gray-500/50 focus:ring-brand-500/70 focus:outline-none focus:bg-brand-500/10 transition-all ease-in-out py-1 px-2 w-full hover:ring-brand-500/80 hover:bg-brand-500/20 placeholder:text-brand-gray-500"
-      :required="required"
-      :disabled="disabled"
-      :class="{
-        'cursor-not-allowed bg-brand-gray-500/50': disabled,
-      }"
-      :value="modelValue"
-      @input="
-        emit('update:modelValue', ($event.target as HTMLInputElement).value)
-      "
-    ></textarea>
+    <div class="mt-2">
+      <textarea
+        v-uid
+        ref="current"
+        v-bind="$attrs"
+        class="block w-full rounded-md border-0 py-1.5 text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 placeholder:text-brand-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6"
+        :required="required"
+        :disabled="disabled"
+        :class="{
+          'cursor-not-allowed bg-brand-gray-500/50': disabled,
+        }"
+        :value="modelValue"
+        @input="
+          emit('update:modelValue', ($event.target as HTMLInputElement).value)
+        "
+      ></textarea>
+    </div>
   </div>
 </template>
 
