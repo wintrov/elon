@@ -1,17 +1,17 @@
 name: Publish NPM packages
 run-name: Publish NPM packages
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
       - 'packages/**'
-    # types: [closed]
+    types: [closed]
 #############################################################################################
 jobs:
 #############################################################################################
   GET-CHANGED-FILES:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     outputs:
       changed_packages: ${{ steps.changed-files.outputs.all_changed_files	}}
