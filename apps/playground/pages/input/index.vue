@@ -18,13 +18,10 @@
 
     <k-text-input label="With icons" modelValue="Lots of icons">
       <template #leadingIcon>
-        <EnvelopeIcon class="h-5 w-5 text-brand-gray-400" aria-hidden="true" />
+        <KIconEmail class="h-5 w-5 text-brand-gray-400" aria-hidden="true" />
       </template>
       <template #trailingIcon>
-        <QuestionMarkCircleIcon
-          class="h-5 w-5 text-brand-gray-400"
-          aria-hidden="true"
-        />
+        <KIconQuestion class="h-5 w-5 text-brand-gray-400" aria-hidden="true" />
       </template>
     </k-text-input>
 
@@ -37,7 +34,3 @@
     <k-text-input label="Pill" placeholder="Placeholder" pill />
   </div>
 </template>
-
-<script setup lang="ts">
-import { EnvelopeIcon, QuestionMarkCircleIcon } from '@heroicons/vue/20/solid'
-</script>

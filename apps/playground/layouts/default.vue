@@ -75,7 +75,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRoute, useRouter, RouteLocation } from 'vue-router'
-import { ChevronRightIcon, HomeIcon } from '@heroicons/vue/20/solid'
 
 const route = useRoute()
 const router = useRouter()
