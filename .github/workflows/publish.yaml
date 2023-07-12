@@ -29,16 +29,15 @@ jobs:
   RELEASE:
     needs: 
       - GET-CHANGED-FILES
-    strategy:
-      matrix:
-        package: ${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}
+    # strategy:
+    #   matrix:
+    #     package: ${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}
     name: Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: print package
         run: | 
-          echo ${{ matrix.package }}
           echo "${{ needs.GET-CHANGED-FILES.outputs.changed_packages }}"
       # - uses: actions/setup-node@v1
       #   with:
