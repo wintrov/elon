@@ -13,3 +13,5 @@ __generated__
 .temp
 release/
 dist-electron/
+.vscode
+docs

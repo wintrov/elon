@@ -18,6 +18,6 @@ module.exports = {
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
-    '../src/runtime/components/**/*.{js,vue,ts}',
+    './node_modules/@salfatigroup/ui/src/runtime/components/**/*.{js,vue,ts}',
   ],
 }

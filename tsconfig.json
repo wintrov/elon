@@ -1,29 +1,23 @@
 {
+  "files": [],
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "skipLibCheck": true,
-    "strict": true,
-    "allowJs": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "types": ["node"],
-    "baseUrl": "..",
     "paths": {
-      "~": ["."],
-      "~/*": ["./*"],
-      "@": ["."],
-      "@/*": ["./*"],
-      "~~": ["."],
-      "~~/*": ["./*"],
-      "@@": ["."],
-      "@@/*": ["./*"]
+      "@salfatigroup/ui": [
+        "./node_modules/@salfatigroup/ui"
+      ]
     }
   },
-  "include": ["./nuxt.d.ts", "./**/*"],
-  "exclude": ["./dist", "./.output"]
+  "references": [
+    {
+      "path": "./apps/playground"
+    },
+    {
+      "path": "./packages/ui"
+    },
+  ],
+  "exclude": ["node_modules", "dist"],
+  "include": [
+    "apps/playground",
+    "packages/ui",
+  ]
 }

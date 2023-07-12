@@ -1,42 +1,20 @@
 {
-  "name": "@salfatigroup/ui",
-  "version": "0.1.0",
-  "exports": {
-    ".": {
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
-    }
-  },
-  "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
-  "files": [
-    "dist"
+  "name": "salfatigroup-ui",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
-    "build": "nuxt-module-build",
-    "dev": "nuxt-module-build --stub && nuxt-module-build prepare",
-    "prepack": "pnpm build",
-    "build:docs": "nuxi generate docs",
-    "lint": "eslint .",
-    "typecheck": "nuxi typecheck",
-    "prepare": "nuxi prepare docs",
-    "release": "pnpm lint && standard-version && git push --follow-tags"
-  },
-  "dependencies": {
-    "@headlessui/vue": "^1.7.14",
-    "@heroicons/vue": "^2.0.18",
-    "@nuxt/kit": "^3.5.2",
-    "@shimyshack/uid": "^0.1.7"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "clean": "turbo run clean && rimraf node_modules"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@nuxt/eslint-config": "^0.1.1",
-    "@nuxt/module-builder": "^0.4.0",
-    "@nuxt/schema": "^3.5.2",
-    "@nuxt/test-utils": "^3.5.1",
-    "@types/node": "^18",
-    "nuxt": "^3.5.2",
-    "prettier": "^3.0.0",
-    "vue": "^3.3.4"
-  }
+    "rimraf": "^5.0.1",
+    "turbo": "^1.10.6",
+    "typescript": "^5.1.6"
+  },
+  "packageManager": "pnpm@8.5.1"
 }
