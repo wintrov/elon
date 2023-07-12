@@ -1,10 +1,10 @@
 name: Publish NPM packages
 run-name: Publish NPM packages
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types: [closed]
+    # types: [closed]
 #############################################################################################
 jobs:
 #############################################################################################
