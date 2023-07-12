@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'packages/**'
     # types: [closed]
 #############################################################################################
 jobs:
@@ -23,6 +25,7 @@ jobs:
       uses: tj-actions/changed-files@v37
       with:
         json: "true"
+        json_raw_format: true
         dir_names: "true"
         files: |
           packages/**
@@ -30,11 +33,11 @@ jobs:
   RELEASE:
     needs:
       - GET-CHANGED-FILES
-    if: ${{ needs.GET-CHANGED-FILES.outputs.changed_packages != '{}' }}
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     package: ${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}
+    if: ${{ needs.GET-CHANGED-FILES.outputs.changed_packages != '[]' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}
     runs-on: ubuntu-latest
     steps:
       # - uses: actions/checkout@v3
