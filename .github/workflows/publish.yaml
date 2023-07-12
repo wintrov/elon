@@ -12,8 +12,8 @@ jobs:
     # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.bump_version.outputs.version_tag }}
-      packages: ${{ steps.filter.outputs.packages_files }}
+      tag_version: ${{ steps.bump_version.outputs.version_tag }}
+      changed_packages: ${{ steps.filter.outputs.packages_files }}
     #
     steps:
     - name: Checkout repository
@@ -32,8 +32,8 @@ jobs:
             - 'packages/**/**'
     - name: print outputs
       run: |
-        echo "version: ${{ needs.GET-VERSION.outputs.version }}"
-        echo "packages: ${{ needs.GET-VERSION.outputs.packages }}"
+        echo "version: ${{ needs.GET-VERSION.outputs.tag_version }}"
+        echo "packages: ${{ needs.GET-VERSION.outputs.changed_packages }}"
 #   PUBLISH:
 #     runs-on: ubuntu-latest
 #     name: Update resources by VPA
