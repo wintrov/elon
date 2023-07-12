@@ -1,17 +1,36 @@
-<!-- <template>
-  <Listbox as="div" :modelValue="selected">
-    <ListboxLabel class="block text-sm font-medium leading-6 text-gray-900"
-      >Assigned to</ListboxLabel
+<template>
+  <Listbox
+    as="div"
+    :model-value="modelValue"
+    @update:model-value="emit('update:modelValue', $event)"
+    :multiple="multiple"
+  >
+    <ListboxLabel
+      class="block text-sm font-medium leading-6 text-brand-gray-900"
+      >{{ label }}</ListboxLabel
     >
     <div class="relative mt-2">
       <ListboxButton
-        class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-600 sm:text-sm sm:leading-6"
       >
-        <span class="block truncate">{{ selected.name }}</span>
+        <Option :option="modelValue" v-if="!Array.isArray(modelValue)" />
+        <Option :option="modelValue[0]" v-else-if="modelValue.length > 0"
+          ><template v-if="modelValue.length > 1">
+            <span class="text-brand-gray-500 text-ellipsis"
+              >+{{ modelValue.length - 1 }} more</span
+            >
+          </template>
+        </Option>
+        <span class="block truncate text-brand-gray-500/50" v-else>
+          {{ placeholder }}
+        </span>
         <span
           class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
         >
-          <ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+          <ChevronUpDownIcon
+            class="h-5 w-5 text-brand-gray-400"
+            aria-hidden="true"
+          />
         </span>
       </ListboxButton>
 
@@ -25,34 +44,18 @@
         >
           <ListboxOption
             as="template"
-            v-for="person in people"
-            :key="person.id"
-            :value="person"
+            v-for="option in options"
+            :key="option.id"
+            :value="option"
             v-slot="{ active, selected }"
           >
             <li
               :class="[
-                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                active ? 'bg-brand-600 text-white' : 'text-brand-gray-900',
                 'relative cursor-default select-none py-2 pl-3 pr-9',
               ]"
             >
-              <span
-                :class="[
-                  selected ? 'font-semibold' : 'font-normal',
-                  'block truncate',
-                ]"
-                >{{ person.name }}</span
-              >
-
-              <span
-                v-if="selected"
-                :class="[
-                  active ? 'text-white' : 'text-indigo-600',
-                  'absolute inset-y-0 right-0 flex items-center pr-4',
-                ]"
-              >
-                <CheckIcon class="h-5 w-5" aria-hidden="true" />
-              </span>
+              <Option :active="active" :selected="selected" :option="option" />
             </li>
           </ListboxOption>
         </ListboxOptions>
@@ -62,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { PropType } from 'vue'
 import {
   Listbox,
   ListboxButton,
@@ -71,30 +74,44 @@ import {
   ListboxOptions,
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import Option, { OptionType } from './select/option'
 
-const people = [
-  { id: 1, name: 'Wade Cooper' },
-  { id: 2, name: 'Arlene Mccoy' },
-  { id: 3, name: 'Devon Webb' },
-  { id: 4, name: 'Tom Cook' },
-  { id: 5, name: 'Tanya Fox' },
-  { id: 6, name: 'Hellen Schmidt' },
-  { id: 7, name: 'Caroline Schultz' },
-  { id: 8, name: 'Mason Heaney' },
-  { id: 9, name: 'Claudie Smitham' },
-  { id: 10, name: 'Emil Schaefer' },
-]
+type Props = {
+  options: OptionType[]
+  modelValue: Option | OptionType[]
+  multiple: boolean
+  placeholder: string
+  label: string
+}
 
-const selected = ref(people[3])
-const multipleRef = ref([people[3], people[4]])
-onMounted(() => {
-  watch(selected, (value, prev) => {
-    console.log('prev', prev)
-    console.log(value)
-  })
+defineProps({
+  options: {
+    type: Array as PropType<Props['options']>,
+    default: () => [],
+  },
+  modelValue: {
+    type: [Object, Array] as PropType<Props['modelValue']>,
+    default: () => [],
+  },
+  multiple: {
+    type: Boolean as PropType<Props['multiple']>,
+    default: false,
+  },
+  placeholder: {
+    type: String as PropType<Props['placeholder']>,
+    default: 'Select an option',
+  },
+  label: {
+    type: String as PropType<Props['label']>,
+    default: '',
+  },
 })
-</script> -->
 
+const emit = defineEmits<{
+  'update:modelValue': [value: OptionType | OptionType[]]
+}>()
+</script>
+<!--
 <template>
   <div class="w-full relative">
     <label v-if="label" class="font-medium align-top">
@@ -105,10 +122,10 @@ onMounted(() => {
 
     <button
       type="button"
-      class="rounded bg-brand-gray-100/50 border-0 outline-none ring-1 ring-brand-gray-500/50 focus:ring-brand-500/70 focus:outline-none focus:bg-brand-500/10 transition-all ease-in-out py-1 px-2 w-full hover:ring-brand-500/80 hover:bg-brand-500/20 placeholder:text-brand-gray-500"
+      class="rounded bg-brand-brand-gray-100/50 border-0 outline-none ring-1 ring-brand-brand-gray-500/50 focus:ring-brand-500/70 focus:outline-none focus:bg-brand-500/10 transition-all ease-in-out py-1 px-2 w-full hover:ring-brand-500/80 hover:bg-brand-500/20 placeholder:text-brand-brand-gray-500"
       :disabled="disabled"
       :class="{
-        'cursor-not-allowed bg-brand-gray-500/50': disabled,
+        'cursor-not-allowed bg-brand-brand-gray-500/50': disabled,
       }"
     >
       {{
@@ -172,4 +189,4 @@ const props = defineProps({
     default: () => [],
   },
 })
-</script>
+</script> -->
