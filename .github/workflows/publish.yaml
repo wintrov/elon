@@ -26,9 +26,9 @@ jobs:
           packages/**
 ############################################################################################################
   RELEASE:
-    if: needs.GET-CHANGED-FILES.outputs.changed_packages != ''
     needs:
       - GET-CHANGED-FILES
+    if: needs.GET-CHANGED-FILES.outputs.changed_packages != ''
     strategy:
       matrix:
         package: ${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}
