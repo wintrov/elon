@@ -23,6 +23,7 @@ jobs:
       uses: tj-actions/changed-files@v37
       with:
         json: "true"
+        dir_names: "true"
         files: |
           packages/**
 ############################################################################################################
