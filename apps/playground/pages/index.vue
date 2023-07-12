@@ -173,7 +173,7 @@ const components = ref([
         content: 'Input',
       },
     ],
-    codeExample: `<k-input>Input.</k-input>`,
+    codeExample: `<k-input>Input</k-input>`,
   },
   {
     title: 'Text area',
