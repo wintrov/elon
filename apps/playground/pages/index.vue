@@ -23,18 +23,26 @@
         class="flex flex-col bg-brand-gray-50 col-span-1 rounded-lg shadow"
       >
         <div class="bg-white space-y-6 p-6 flex-1">
-          <div class="flex w-full items-center justify-between space-x-6">
-            <h2 class="truncate text-sm font-medium text-brand-gray-900">
-              {{ component.title }}
-            </h2>
+          <div class="space-y-1">
+            <div class="flex w-full items-center justify-between">
+              <h2 class="truncate text-sm font-medium text-brand-gray-900">
+                {{ component.title }}
+              </h2>
 
-            <nuxt-link
-              :to="component.to"
-              class="flex items-center space-x-2 text-xs text-brand-500 hover:text-brand-700"
-            >
-              <span>Learn more</span>
-              <KIconChevronRight class="h-4 w-4" />
-            </nuxt-link>
+              <nuxt-link
+                :to="component.to"
+                class="flex items-center space-x-2 text-xs text-brand-500 hover:text-brand-700"
+              >
+                <span>Learn more</span>
+                <KIconChevronRight class="h-4 w-4" />
+              </nuxt-link>
+            </div>
+
+            <p
+              v-if="component.description"
+              class="text-xs text-brand-gray-500"
+              v-html="component.description"
+            ></p>
           </div>
 
           <div align="center">
@@ -67,6 +75,7 @@ import KBadge from '../../../packages/ui/src/runtime/components/badge.vue'
 import KSelect from '../../../packages/ui/src/runtime/components/select.vue'
 import KInput from '../../../packages/ui/src/runtime/components/input/default-input.vue'
 import KTextArea from '../../../packages/ui/src/runtime/components/text-area.vue'
+import IStar from '../../../packages/ui/src/runtime/components/icon/star.vue'
 
 const components = ref([
   {
@@ -180,6 +189,19 @@ const components = ref([
       },
     ],
     codeExample: `<k-text-area>Text area</k-text-area>`,
+  },
+  {
+    title: 'Icon',
+    description:
+      'You can find the full icon list <a target="_blank" class="text-brand-500 hover:text-brand-700" href="https://www.figma.com/file/kNBOQOHOM9muhOOG3HxaYM/Anron-Icons-10?type=design&node-id=2542%3A5990&mode=design&t=6DiKPOPQ1BsiKzkG-1">here.</a>',
+    to: '/icon',
+    element: shallowRef(IStar),
+    props: {
+      class: 'w-5 h-5 text-brand-500',
+      variant: 'duotone',
+    },
+    slots: [],
+    codeExample: `<KIconStar variant="duotone" class="w-5 h-5" />`,
   },
 ])
 </script>
