@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.bump_version.outputs.version_tag }}
-      packages: ${{ steps.filter.outputs.packages }}
+      packages: ${{ steps.filter.outputs.packages_files }}
     #
     steps:
     - name: Checkout repository
