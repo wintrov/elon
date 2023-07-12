@@ -33,12 +33,12 @@ jobs:
   RELEASE:
     needs:
       - GET-CHANGED-FILES
-    if: ${{ needs.GET-CHANGED-FILES.outputs.changed_packages != '[]' }}
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     package: ${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}
     runs-on: ubuntu-latest
+    if: ${{ needs.GET-CHANGED-FILES.outputs.changed_packages != '[]' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        package: "${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}"
     steps:
       # - uses: actions/checkout@v3
       - name: print package
