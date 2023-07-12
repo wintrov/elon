@@ -1,78 +1,113 @@
 <template>
-  <div class="w-full relative">
-    <label v-if="label" class="font-medium align-top">
-      {{ label }}
-
-      <span v-if="required" class="text-brand-danger-500 text-xs">*</span>
-    </label>
-
-    <button
-      type="button"
-      class="rounded bg-brand-gray-100/50 border-0 outline-none ring-1 ring-brand-gray-500/50 focus:ring-brand-500/70 focus:outline-none focus:bg-brand-500/10 transition-all ease-in-out py-1 px-2 w-full hover:ring-brand-500/80 hover:bg-brand-500/20 placeholder:text-brand-gray-500"
-      :disabled="disabled"
-      :class="{
-        'cursor-not-allowed bg-brand-gray-500/50': disabled,
-      }"
+  <Listbox
+    as="div"
+    :model-value="modelValue"
+    @update:model-value="emit('update:modelValue', $event)"
+    :multiple="multiple"
+  >
+    <ListboxLabel
+      class="block text-sm font-medium leading-6 text-brand-gray-900"
+      >{{ label }}</ListboxLabel
     >
-      {{
-        Array.isArray(modelValue)
-          ? modelValue.map((option) => option.name).join(', ')
-          : modelValue.name
-      }}
-    </button>
-
-    <ul>
-      <li
-        v-for="option in options"
-        :key="option.value"
-        @click="emit('update:modelValue', option)"
+    <div class="relative mt-2">
+      <ListboxButton
+        class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-600 sm:text-sm sm:leading-6"
       >
-        {{ option.name }}
-      </li>
-    </ul>
-  </div>
+        <Option :option="modelValue" v-if="!Array.isArray(modelValue)" />
+        <Option :option="modelValue[0]" v-else-if="modelValue.length > 0"
+          ><template v-if="modelValue.length > 1">
+            <span class="text-brand-gray-500 text-ellipsis"
+              >+{{ modelValue.length - 1 }} more</span
+            >
+          </template>
+        </Option>
+        <span class="block truncate text-brand-gray-500/50" v-else>
+          {{ placeholder }}
+        </span>
+        <span
+          class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
+        >
+          <ChevronUpDownIcon
+            class="h-5 w-5 text-brand-gray-400"
+            aria-hidden="true"
+          />
+        </span>
+      </ListboxButton>
+
+      <transition
+        leave-active-class="transition ease-in duration-100"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <ListboxOptions
+          class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+        >
+          <ListboxOption
+            as="template"
+            v-for="option in options"
+            :key="option.id"
+            :value="option"
+            v-slot="{ active, selected }"
+          >
+            <li
+              :class="[
+                active ? 'bg-brand-600 text-white' : 'text-brand-gray-900',
+                'relative cursor-default select-none py-2 pl-3 pr-9',
+              ]"
+            >
+              <Option :active="active" :selected="selected" :option="option" />
+            </li>
+          </ListboxOption>
+        </ListboxOptions>
+      </transition>
+    </div>
+  </Listbox>
 </template>
 
 <script setup lang="ts">
 import { PropType } from 'vue'
+import {
+  Listbox,
+  ListboxButton,
+  ListboxLabel,
+  ListboxOption,
+  ListboxOptions,
+} from '@headlessui/vue'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import Option, { OptionType } from './select/option'
 
-type SelectOption = {
-  name: string
-  value: string
-}
-
-type SelectProps = {
+type Props = {
+  options: OptionType[]
+  modelValue: Option | OptionType[]
+  multiple: boolean
+  placeholder: string
   label: string
-  required: boolean
-  disabled: boolean
-  loading: boolean
-  options: SelectOption[]
-  modelValue: SelectOption | SelectOption[]
 }
 
-const emit = defineEmits<{
-  'update:modelValue': [value: SelectOption | SelectOption[]]
-}>()
-
-const props = defineProps({
-  label: {
-    type: String as PropType<SelectProps['label']>,
-  },
-  required: {
-    type: Boolean as PropType<SelectProps['required']>,
-    default: false,
-  },
-  disabled: {
-    type: Boolean as PropType<SelectProps['loading']>,
-    default: false,
-  },
+defineProps({
   options: {
-    type: Array as PropType<SelectProps['options']>,
+    type: Array as PropType<Props['options']>,
     default: () => [],
   },
   modelValue: {
-    type: [Object, Array] as PropType<SelectProps['modelValue']>,
+    type: [Object, Array] as PropType<Props['modelValue']>,
     default: () => [],
   },
+  multiple: {
+    type: Boolean as PropType<Props['multiple']>,
+    default: false,
+  },
+  placeholder: {
+    type: String as PropType<Props['placeholder']>,
+    default: 'Select an option',
+  },
+  label: {
+    type: String as PropType<Props['label']>,
+    default: '',
+  },
 })
+
+const emit = defineEmits<{
+  'update:modelValue': [value: OptionType | OptionType[]]
+}>()
 </script>
