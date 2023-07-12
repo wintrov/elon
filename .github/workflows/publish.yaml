@@ -1,0 +1,39 @@
+name: Publish NPM packages
+run-name: Publish NPM packages
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+#############################################################################################
+jobs:
+#############################################################################################
+  GET-VERSION:
+    # if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.bump_version.outputs.version_tag }}
+      packages: ${{ steps.filter.outputs.packages }}
+    #
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    #
+    - name: Bump version
+      id: bump_version
+      uses: paulhatch/semantic-version@v5.0.2
+    #
+    - name: Get changed files
+      uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          packages:
+            - 'packages/**'
+#   PUBLISH:
+#     runs-on: ubuntu-latest
+#     name: Update resources by VPA
+#     steps:
+# #############################################################################################
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
