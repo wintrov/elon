@@ -21,3 +21,25 @@ theme: {
     }
   }
 ```
+
+## Contribute
+
+1. Counter-intuitive: First build and then install
+
+```
+pnpm build
+```
+
+2. Install
+
+```
+pnpm i
+```
+
+3. Run
+
+```
+pnpm dev
+```
+
+Open http://localhost:4200/
