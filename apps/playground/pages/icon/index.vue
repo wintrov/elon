@@ -25,17 +25,7 @@
 
 <script setup lang="ts">
 import { ref, shallowRef } from 'vue'
-import {
-  IStar,
-  IFire,
-  IModules,
-  IInfo,
-  IComment,
-  IColorFilter,
-  IClockPlus,
-  IElements4,
-  IShield,
-} from '../../../../packages/ui/src/runtime/components/icon'
+import * as ICONS from '../../../../packages/ui/src/runtime/components/icon'
 
 const supportedVariants = [
   'duocolor',
@@ -46,42 +36,11 @@ const supportedVariants = [
   'line',
 ]
 
-const iconSamples = ref([
-  {
-    iconName: 'star',
-    component: shallowRef(IStar),
-  },
-  {
-    iconName: 'fire',
-    component: shallowRef(IFire),
-  },
-  {
-    iconName: 'modules',
-    component: shallowRef(IModules),
-  },
-  {
-    iconName: 'info',
-    component: shallowRef(IInfo),
-  },
-  {
-    iconName: 'comment',
-    component: shallowRef(IComment),
-  },
-  {
-    iconName: 'color-filter',
-    component: shallowRef(IColorFilter),
-  },
-  {
-    iconName: 'clock-plus',
-    component: shallowRef(IClockPlus),
-  },
-  {
-    iconName: 'elements-4',
-    component: shallowRef(IElements4),
-  },
-  {
-    iconName: 'shield',
-    component: shallowRef(IShield),
-  },
-])
+const iconsKeys = Object.keys(ICONS)
+
+const iconSamples = ref(iconsKeys.map((iconName) => ({
+  iconName,
+  component: shallowRef(ICONS[iconName]),
+})))
+
 </script>
