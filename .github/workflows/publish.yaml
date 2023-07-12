@@ -29,7 +29,11 @@ jobs:
       with:
         filters: |
           packages:
-            - 'packages/**'
+            - 'packages/**/**'
+    - name: print outputs
+      run: |
+        echo "version: ${{ steps.bump_version.outputs.version_tag }}"
+        echo "packages: ${{ steps.filter.outputs.packages }}"
 #   PUBLISH:
 #     runs-on: ubuntu-latest
 #     name: Update resources by VPA
