@@ -23,7 +23,7 @@ jobs:
       id: bump_version
       uses: paulhatch/semantic-version@v5.0.2
       with:
-        change_pattern: 'packages/**/**'
+        change_path: 'packages/**/**'
     #
     - name: Get changed files
       uses: dorny/paths-filter@v2
