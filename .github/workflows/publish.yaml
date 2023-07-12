@@ -12,19 +12,18 @@ jobs:
     # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     outputs:
-      changed_packages: ${{ steps.filter.outputs.packages_files }}
+      changed_packages: ${{ steps.changed-files.outputs.all_changed_files	}}
     #
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
     #
     - name: Get changed files
-      uses: dorny/paths-filter@v2
-      id: filter
+      id: changed-files
+      uses: tj-actions/changed-files@v37
       with:
-        filters: |
-          packages:
-            - 'packages/**/**'
+        files: |
+          packages/**/**
 ############################################################################################################
   RELEASE:
     needs:
