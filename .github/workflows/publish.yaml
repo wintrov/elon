@@ -31,26 +31,26 @@ jobs:
     needs:
       - GET-CHANGED-FILES
     if: ${{ needs.GET-CHANGED-FILES.outputs.changed_packages != '{}' }}
-    strategy:
-      fail-fast: false
-      matrix:
-        package: ${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     package: ${{ fromJson(needs.GET-CHANGED-FILES.outputs.changed_packages) }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      # - uses: actions/checkout@v3
       - name: print package
         run: | 
           echo "${{ needs.GET-CHANGED-FILES.outputs.changed_packages }}"
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-      - name: Get into package folder
-        run: | 
-          cd ${{ matrix.package }}
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
-      - run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - uses: actions/setup-node@v1
+      #   with:
+      #     node-version: "12.x"
+      # - name: Get into package folder
+      #   run: | 
+      #     cd ${{ matrix.package }}
+      # - run: npm ci
+      # - run: npm run build --if-present
+      # - run: npm test
+      # - run: npx semantic-release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
